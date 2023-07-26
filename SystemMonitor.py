@@ -13,12 +13,17 @@ def get_memory_usage():
         'percent': mem.percent
     }
 
-if __name__ == "__name__":
-    while True:
-        cpu_usage = get_cpu_usage()
-        memory_usage = get_memory_usage()
+cpu_usage = get_cpu_usage()
+memory_usage = get_memory_usage()
 
-        print("CPU Usage: {}%".format(cpu_usage))
-        print("Memory Usage: {}%".format(memory_usage['percent']))
+print("CPU Usage:")
+for i, cpu in enumerate(cpu_usage):
+    print(f"Core {i}: {cpu}%")
+    print("Memory Usage:")
+    print(f"Total: {memory_usage['total'] / (1024 ** 3):.2f} GB")
+    print(f"Available: {memory_usage['available'] / (1024 ** 3):.2f} GB")
+    print(f"Used: {memory_usage['used'] / (1024 ** 3):.2f} GB ({memory_usage['percent']}%)")
+    print("----------------------")
 
-        time.sleep(5)
+    time.sleep(5)
+
